@@ -81,5 +81,15 @@ p {
   margin-top: 5px;
 }
 
-#reset-btn {
+#rbtn {
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  background-color: inherit;
+}
+
+#rbtn,
+.sad-smiley {
+  width: 40px;
+  height: auto;
 }

@@ -61,3 +61,13 @@ h1 {
 .btn:hover {
   transform: rotate(360deg);
 }
+
+.reset {
+  display: flex;
+  justify-content: center;
+  font-family: "Archivo Black", sans-serif;
+  margin-top: 5px;
+}
+
+#reset-btn {
+}

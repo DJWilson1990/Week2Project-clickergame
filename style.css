@@ -70,7 +70,7 @@ p {
   transition: transform 0.7s ease-in-out;
 }
 
-.btn:hover {
+.btn.hover {
   transform: rotate(360deg);
 }
 
@@ -81,14 +81,14 @@ p {
   margin-top: 5px;
 }
 
-#rbtn {
+#resetBtn {
   border: none;
   cursor: pointer;
   appearance: none;
   background-color: inherit;
 }
 
-#rbtn,
+#resetBtn,
 .sad-smiley {
   width: 40px;
   height: auto;

@@ -1,34 +1,33 @@
 console.log("Welcome");
 
+const bonusPointTimer = 10000;
 const btn = document.getElementById("btn");
-const rbtn = document.getElementById("rbtn");
-let totalsmiles = document.getElementById("totalsmiles");
+const resetBtn = document.getElementById("resetBtn");
+const scoreElement = document.getElementById("totalsmiles");
 
-let smiles = 0;
+btn.addEventListener("click", incrementScore);
+resetBtn.addEventListener("click", resetScore);
+
+let score = Number(localStorage.getItem("myScore"));
+updateDisplay();
+
 setInterval(function () {
-  smiles = smiles + 1;
-  totalsmiles.innerText = smiles; //this line links smile count to browser div
-  console.log("😁", smiles);
-}, 5000);
+  incrementScore();
+}, bonusPointTimer);
 
-btn.addEventListener("click", function () {
-  smiles = smiles + 1;
-  totalsmiles.innerText = smiles;
-});
-
-let click = 0;
-function score() {
-  click += 1;
-  btn.innerText = click;
+function incrementScore() {
+  score += 1;
+  updateDisplay();
+  localStorage.setItem("myScore", score);
 }
 
-rbtn.addEventListener("click", function () {
-  smiles = 0;
-  totalsmiles.innerText = smiles;
-});
+function updateDisplay() {
+  scoreElement.innerText = score;
+  console.log("😁", score);
+}
 
-let reset = 0;
-function score() {
-  click = 0;
-  rbtn.innerText = click;
+function resetScore() {
+  score = 0;
+  updateDisplay();
+  localStorage.setItem("myScore", score);
 }

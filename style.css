@@ -64,13 +64,12 @@ p {
   height: 150px;
   width: 150px;
   border-radius: 100px;
-}
-
-.btn {
   transition: transform 0.7s ease-in-out;
+  animation-name: expand;
+  animation-duration: 1s;
 }
 
-.btn.hover {
+#btn:hover {
   transform: rotate(360deg);
 }
 

@@ -27,7 +27,7 @@ h1 {
   margin-top: 10px;
 }
 
-.score-container {
+#totalsmiles {
   display: flex;
   justify-content: center;
   align-items: center;

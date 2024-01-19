@@ -90,3 +90,7 @@ p {
   width: 40px;
   height: auto;
 }
+
+#buyBtn {
+  margin-left: 5px;
+}

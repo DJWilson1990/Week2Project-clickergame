@@ -8,7 +8,7 @@ const scoreElement = document.getElementById("totalsmiles"); //get reference to 
 btn.addEventListener("click", incrementScore); //adding the listener for click event and the function it will call
 resetBtn.addEventListener("click", resetScore); //same as above but for reset button
 
-let score = Number(localStorage.getItem("myScore")); //getting stored scored form local storage and covert to number
+let score = Number(localStorage.getItem("myScore")); //getting stored score from local storage and covert to number
 updateDisplay(); //calling function to update screen
 
 setInterval(function () {

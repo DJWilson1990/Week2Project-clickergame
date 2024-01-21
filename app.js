@@ -4,15 +4,21 @@ const bonusPointTimer = 10000; //setting timer duration in ms
 const btn = document.getElementById("btn"); //get reference to btn
 const resetBtn = document.getElementById("resetBtn"); //get reference to reset btn
 const scoreElement = document.getElementById("totalsmiles"); //get reference to element where score is displayed on html
+const upgradeTallyElement = document.getElementById("upgrade-tally");
 const buyBtn = document.getElementById("buyBtn"); ///////
-const upgradeCost = -10; ///////
-let scoreIncrease = 1; ///////
+const upgradeCost = 10; ///////
+//let gameState;
 
 btn.addEventListener("click", incrementScore); //adding the listener for click event and the function it will call
 resetBtn.addEventListener("click", resetScore); //same as above but for reset button
-buyBtn.addEventListener("click", decrementScore); ////////
+buyBtn.addEventListener("click", buyUpgrade); ////////
+let gameState = {
+  score: 0,
+  upgradeLevel: 0,
+};
 
-let score = Number(localStorage.getItem("myScore")); //getting stored score from local storage and covert to number
+loadGameState();
+
 updateDisplay(); //calling function to update screen
 
 setInterval(function () {
@@ -22,44 +28,45 @@ setInterval(function () {
 
 function incrementScore() {
   //function increments score by 1 and then updates display and saves to local storage
-  score += 1;
+  gameState.score = gameState.score + gameState.upgradeLevel + 1;
+
   updateDisplay();
-  localStorage.setItem("myScore", score);
+  saveGameState();
 }
 
 function updateDisplay() {
   //function to update display
-  scoreElement.innerText = score;
-  console.log("😁", score); //writing to console log
+  scoreElement.innerText = gameState.score;
+  upgradeTallyElement.innerText = gameState.upgradeLevel;
+  console.log("😁", gameState.score); //writing to console log
 }
 
 function resetScore() {
   //function to reset score back to 0 and updates display
-  score = 0;
+  gameState.score = 0;
+  gameState.upgradeLevel = 0;
   updateDisplay();
-  localStorage.setItem("myScore", score); //saves to local storage
+  saveGameState(); //saves to local storage
 }
 
-function decrementScore() {
-  if (score >= 10) {
+function buyUpgrade() {
+  if (gameState.score >= upgradeCost) {
     //////if score is equal to or bigger than 10, upgrade can be bought and 10 points deducted
-    score = score + upgradeCost;
-  } else {
-    ////// if not score will stay the same
-    score = score;
+    gameState.score = gameState.score - upgradeCost;
+    gameState.upgradeLevel = gameState.upgradeLevel + 1;
+    updateDisplay();
+    saveGameState();
   }
-
-  updateDisplay();
-  localStorage.setItem("myScore", score);
 }
 
-// function scoreIncrease() {
-//   score = incrementScore + scoreIncrease;
-// }
-//////////////////
+function saveGameState() {
+  const stringified = JSON.stringify(gameState);
+  localStorage.setItem("gameState", stringified);
+}
 
-// function upgrade() {
-//   let scoreIncrease;
-//   incrementScore = score + scoreElement;
-// }
-////////////////
+function loadGameState() {
+  const gameStateString = localStorage.getItem("gameState");
+  if (gameStateString != null) {
+    gameState = JSON.parse(gameStateString);
+  }
+}
